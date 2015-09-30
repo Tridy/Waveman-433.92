@@ -1,0 +1,111 @@
+http://elektronikforumet.syntaxis.se/wiki/index.php/RF_Protokoll_-_Nexa/Proove_%28%C3%A4ldre,_ej_sj%C3%A4lvl%C3%A4rande%29
+
+ The NEXA/PROOVE Remote Protocol
+
+The RF remote control transmitters/receivers from NEXA and PROOVE seems to originate from ARC Technology Co Ltd, Taiwan. There are several versions of these products but they seem to share the same protocol.
+
+Bit representation
+
+The bit coding used by the encoder chips, for example M3E. from MOSDESIGN SEMICONDUCTOR, allows for trinary codes, ie '0','1' and 'X' (OPEN/FLOATING). However, it seems that only '0' and 'X' is currently used in the NEXA/PROOVE remotes. The high level in the ASCII-graphs below denotes the transmission of the 433 MHz carrier. The low level means no carrier.
+
+'0' bit:
+ ____              ____
+|    |            |    |   
+|    |            |    |
+|    |____________|    |____________
+
+|----|------------|----|------------|
+   T       3T        T       3T
+
+'1' bit:
+ ____________      ____________
+|            |    |            |   
+|            |    |            |
+|            |____|            |____
+
+|------------|----|------------|----|
+      3T        T       3T        T
+
+'X' (OPEN) bit:
+ ____              ____________
+|    |            |            |   
+|    |            |            |
+|    |____________|            |____
+
+|----|------------|------------|----|
+   T       3T            3T       T
+
+'STOP/SYNC' bit (Note! Longer than the data bit):
+ ____             
+|    |    
+|    |            
+|    |__________________________...____
+
+|----|--------------------------...----|
+   T                32T
+        
+If the time T is 350us, one data bit time is 8 T; 2.8ms.
+
+Packet format
+
+Each packet is made up of 12 trinary bits followed by a stop/sync bit. Packets are sent n*4 times or more.
+
+If we call the 12 data bits b0..b11 where b0 is sent first, they will have the following meaning:
+
+b0..b3 (4 bits) - House (address)
+0000 - A
+X000 - B
+0X00 - C
+XX00 - D
+00X0 - E
+X0X0 - F
+0XX0 - G
+XXX0 - H
+000X - I
+X00X - J
+0X0X - K
+XX0X - L
+00XX - M
+X0XX - N
+0XXX - O
+XXXX - P
+
+
+b4..b7 - Unit
+0000 - 1
+X000 - 2
+0X00 - 3
+XX00 - 4
+00X0 - 5
+X0X0 - 6
+0XX0 - 7
+XXX0 - 8
+000X - 9
+X00X - 10
+0X0X - 11
+XX0X - 12
+00XX - 13
+X0XX - 14
+0XXX - 15
+XXXX - 16
+
+
+b8..b10 - Unknown
+0XX
+
+b11 - Activation
+0 - OFF
+X - ON
+
+
+Note! This work is partially inspired by the previous work done by Per Mellander and vfr (Håkan Nilsson).
+
+
+Revision History
+
+2006-10-05 Tord Andersson Created
+2006-10-13 Tord Andersson Added chip manufacturer (MOSDESIGN)
+2010-02-20 Tord Andersson Removed dead link to Mellander's project
+2010-02-22 lgrfbs Add PRE kommand to fomat the text for wiki see "Diskussion" for link about wiki formating tips.
+2010-02-22 Tord Andersson Additional formatting.
+2010-02-23 Tord Andersson Added reference to vfr (Håkan Nilsson).
