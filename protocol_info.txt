@@ -1,6 +1,7 @@
 http://elektronikforumet.syntaxis.se/wiki/index.php/RF_Protokoll_-_Nexa/Proove_%28%C3%A4ldre,_ej_sj%C3%A4lvl%C3%A4rande%29
 
- The NEXA/PROOVE Remote Protocol
+ The NEXA/PROOVE/Waveman
+ Remote Protocol
 
 The RF remote control transmitters/receivers from NEXA and PROOVE seems to originate from ARC Technology Co Ltd, Taiwan. There are several versions of these products but they seem to share the same protocol.
 
@@ -97,6 +98,8 @@ b11 - Activation
 0 - OFF
 X - ON
 
+Waveman b9, b10, b11 are all set to X when ON, to 0 when OFF
+
 
 Note! This work is partially inspired by the previous work done by Per Mellander and vfr (Håkan Nilsson).
 
@@ -109,3 +112,4 @@ Revision History
 2010-02-22 lgrfbs Add PRE kommand to fomat the text for wiki see "Diskussion" for link about wiki formating tips.
 2010-02-22 Tord Andersson Additional formatting.
 2010-02-23 Tord Andersson Added reference to vfr (Håkan Nilsson).
+2015-10-01 Genadij Trimailov Added Waveman speciic notes or On Off bits. 
